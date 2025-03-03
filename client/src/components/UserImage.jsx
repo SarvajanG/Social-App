@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 const UserImage = ({ image, size = "60px" }) => {
-  reutrn(
+  return(
     <Box width={size} height={size}>
       <img
         style={{ objectFit: "cover", bordeRadius: "50%" }}
