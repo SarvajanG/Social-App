@@ -31,7 +31,7 @@ const UserWidget = ({ userId, picturePath }) => {
   };
   useEffect(() => {
     getUser();
-  }, []); // eslint-disable-lint react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) {
     return null;
@@ -90,7 +90,7 @@ const UserWidget = ({ userId, picturePath }) => {
       <Divider />
       {/* THIRD ROW */}
       <Box p="1rem 0">
-        <FlexBetween mb="0.5">
+        <FlexBetween mb="0.5rem">
           <Typography color={medium}>Who's viewed your profile</Typography>
           <Typography color={main} fontWeight="500">
             {viewedProfile}
@@ -105,7 +105,7 @@ const UserWidget = ({ userId, picturePath }) => {
       </Box>
       <Divider />
       {/* FOURTH ROW */}
-      <Box p="1rem">
+      <Box p="1rem 0">
         <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
           Social Profiles
         </Typography>
