@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   IconButton,
@@ -24,12 +24,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
+import UserList from "components/UserList";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const [isSearchToggled, setIsSearchToggled] = useState(false);
+  const [search, setSearch] = useState("");
+  const searchContainerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const users = useSelector((state) => state.users);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const theme = useTheme();
@@ -40,6 +45,29 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
+
+  const filteredUsers = users.filter((user) =>
+    `${user.firstName} ${user.lastName}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target)
+      ) {
+        setIsSearchToggled(false); // Close the dropdown if clicked outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -60,15 +88,48 @@ const Navbar = () => {
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
-            backgroundColor={neutralLight}
-            borderRadius="9px"
-            gap="3rem"
-            padding="0.1rem 1.5rem"
+            position="relative"
+            width="100%"
+            ref={searchContainerRef}
           >
-            <InputBase placeholder="Search..." />
-            <IconButton>
-              <Search />
-            </IconButton>
+            <FlexBetween
+              backgroundColor={neutralLight}
+              borderRadius="9px"
+              gap="3rem"
+              padding="0.1rem 1.5rem"
+            >
+              <InputBase
+                value={search}
+                onChange={(e) => setSearch(e.target.value)} // Update search state on input
+                onClick={() => setIsSearchToggled(true)}
+                placeholder="Search..."
+              />
+
+              <IconButton>
+                <Search />
+              </IconButton>
+            </FlexBetween>
+
+            {/* SEARCH DROPDOWN */}
+            {isSearchToggled && (
+              <Box
+                position="absolute"
+                top="100%" // Position below the input box
+                zIndex="10"
+                minWidth="100%"
+                backgroundColor={neutralLight}
+                padding="1rem 1.5rem"
+                //borderRadius="9px"
+                boxShadow="0px 4px 6px rgba(0,0,0,0.1)" // Adds a slight shadow
+              >
+                {/* Display filtered users */}
+                {filteredUsers.length > 0 ? (
+                  <UserList users={filteredUsers} />
+                ) : (
+                  <Typography>No users found</Typography> // If no users match
+                )}
+              </Box>
+            )}
           </FlexBetween>
         )}
       </FlexBetween>
