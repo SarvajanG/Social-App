@@ -1,11 +1,11 @@
-/*import { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsers } from "../state"; // Import the Redux action*/
+import { setUsers } from "../state"; // Import the Redux action
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 
-/*const fetchUsers = async (dispatch, token) => {
+const fetchUsers = async (dispatch, token) => {
   try {
     const response = await fetch("http://localhost:9001/users", {
       method: "GET",
@@ -16,18 +16,18 @@ import { useTheme } from "@mui/material";
   } catch (err) {
     console.error("Error fetching users:", err);
   }
-};*/
+};
 
-const UserList = ({ users }) => {
+const UserList = ({ users = [] }) => {
   const navigate = useNavigate();
   const { palette } = useTheme();
-  /*const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  const users = useSelector((state) => state.users);
+  //const users = useSelector((state) => state.users);
 
   useEffect(() => {
     if (token) fetchUsers(dispatch, token);
-  }, [dispatch, token]);*/
+  }, [dispatch, token]);
 
   return (
     <div>
@@ -38,7 +38,8 @@ const UserList = ({ users }) => {
               padding="0.5rem"
               sx={{
                 "&:hover": {
-                  color: palette.primary.light,
+                  //color: palette.primary.light,
+                  backgroundColor: palette.primary.light,
                   cursor: "pointer",
                 },
               }}

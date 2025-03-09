@@ -118,16 +118,18 @@ const Navbar = () => {
                 zIndex="10"
                 minWidth="100%"
                 backgroundColor={neutralLight}
-                padding="1rem 1.5rem"
+                padding="1rem 0"
                 //borderRadius="9px"
                 boxShadow="0px 4px 6px rgba(0,0,0,0.1)" // Adds a slight shadow
               >
+                <UserList />
                 {/* Display filtered users */}
                 {filteredUsers.length > 0 ? (
-                  <UserList users={filteredUsers} />
+                  <UserList users={filteredUsers} /> //filteredUsers.slice(a,b) to shorten results
                 ) : (
                   <Typography>No users found</Typography> // If no users match
                 )}
+                
               </Box>
             )}
           </FlexBetween>
