@@ -117,15 +117,20 @@ const Navbar = () => {
                 top="100%" // Position below the input box
                 zIndex="10"
                 minWidth="100%"
+                maxHeight="10rem"
                 backgroundColor={neutralLight}
-                padding="0.1rem 0"
+                padding="0"
                 //borderRadius="9px"
                 boxShadow="0px 4px 6px rgba(0,0,0,0.1)" // Adds a slight shadow
+                display="flex"
+                flexDirection="column"
+                overflow="hidden"
               >
                 {/* Display filtered users */}
-                <UserList users={filteredUsers} />
-                {filteredUsers.length <= 0 && (
-                  <Typography padding="0 0.5rem">No users found</Typography>
+                {filteredUsers.length <= 0 ? (
+                  <Typography padding="0.5rem">No users found</Typography>
+                ) : (
+                  <UserList users={filteredUsers} />
                 )}
               </Box>
             )}

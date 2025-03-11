@@ -30,10 +30,16 @@ const UserList = ({ users = [] }) => {
   }, [dispatch, token]);
 
   return (
-    <div>
+    <div style={{ overflowY: "auto" }}>
       <ul style={{ listStyleType: "none", paddingLeft: "0" }}>
         {users.map((user) => (
-          <li key={user._id} onClick={() => navigate(`/profile/${user._id}`)}>
+          <li
+            key={user._id}
+            onClick={() => {
+              navigate(`/profile/${user._id}`);
+              window.location.reload();
+            }}
+          >
             <Typography
               padding="0.5rem"
               sx={{
