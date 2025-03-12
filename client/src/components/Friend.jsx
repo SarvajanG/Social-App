@@ -14,10 +14,14 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const friends = useSelector((state) => state.user.friends);
 
   const { palette } = useTheme();
-  const primaryLight = palette.primary.light;
-  const primaryDark = palette.primary.dark;
+  //const primaryLight = palette.primary.light;
+  //const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
+  const addIconInner = palette.addRemove.addInner;
+  const addIconOuter = palette.addRemove.addOuter;
+  const removeIconInner = palette.addRemove.removeInner;
+  const removeIconOuter = palette.addRemove.removeOuter;
 
   const isFriend = friends.find((friend) => friend._id === friendId);
   const patchFriend = async () => {
@@ -64,14 +68,15 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       </FlexBetween>
       <IconButton
         onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+        sx={{ backgroundColor: isFriend ? removeIconOuter : addIconOuter, p: "0.6rem" }}
       >
         {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          <PersonRemoveOutlined sx={{ color: removeIconInner }} />
         ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
+          <PersonAddOutlined sx={{ color: addIconInner }} />
         )}
       </IconButton>
+      
     </FlexBetween>
   );
 };

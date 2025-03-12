@@ -37,7 +37,7 @@ const UserList = ({ users = [] }) => {
             key={user._id}
             onClick={() => {
               navigate(`/profile/${user._id}`);
-              window.location.reload();
+              navigate(0);
             }}
           >
             <Typography
@@ -45,7 +45,7 @@ const UserList = ({ users = [] }) => {
               sx={{
                 "&:hover": {
                   //color: palette.primary.light,
-                  backgroundColor: palette.primary.light,
+                  backgroundColor: palette.primary.main,
                   cursor: "pointer",
                 },
               }}

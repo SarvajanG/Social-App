@@ -84,7 +84,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          ShadowVerse
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
@@ -130,7 +130,7 @@ const Navbar = () => {
                 {filteredUsers.length <= 0 ? (
                   <Typography padding="0.5rem">No users found</Typography>
                 ) : (
-                  <UserList users={filteredUsers} />
+                  <UserList users={filteredUsers} /> //.slice(0,3)
                 )}
               </Box>
             )}

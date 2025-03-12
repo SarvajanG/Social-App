@@ -1,5 +1,5 @@
 // color design tokens export
-export const colorTokens = {
+/*export const colorTokens = {
   grey: {
     0: "#FFFFFF",
     10: "#F6F6F6",
@@ -27,6 +27,42 @@ export const colorTokens = {
     800: "#00353F",
     900: "#001519",
   },
+};*/
+
+export const colorTokens = {
+  grey: {
+    0: "#FFFFFF",
+    10: "#F6F6F6",
+    50: "#F0F0F0",
+    100: "#E0E0E0",
+    200: "#C2C2C2",
+    300: "#A3A3A3",
+    400: "#858585",
+    500: "#666666",
+    600: "#4D4D4D",
+    700: "#333333",
+    800: "#1A1A1A",
+    900: "#0A0A0A",
+    1000: "#000000",
+  },
+  primary: {
+    50: "#E6FBFF",
+    100: "#CCF7FE",
+    200: "#c3d325",
+    300: "#66E6FC",
+    400: "#33DDFB",
+    500: "#BF0000",
+    600: "#00A0BC",
+    700: "#006B7D",
+    800: "#008900",
+    900: "#001519",
+  },
+  addRemove: {
+    100: "#c3d325",
+    200: "#008900",
+    300: "#ff7676",
+    400: "#d80000",
+  },
 };
 
 //mui theme settings
@@ -53,6 +89,12 @@ export const themeSettings = (mode) => {
               default: colorTokens.grey[900],
               alt: colorTokens.grey[800],
             },
+            addRemove: {
+              addInner: colorTokens.addRemove[100],
+              addOuter: colorTokens.addRemove[200],
+              removeInner: colorTokens.addRemove[300],
+              removeOuter: colorTokens.addRemove[400],
+            },
           }
         : {
             //palette values for light mode
@@ -71,6 +113,12 @@ export const themeSettings = (mode) => {
             background: {
               default: colorTokens.grey[10],
               alt: colorTokens.grey[0],
+            },
+            addRemove: {
+              addInner: colorTokens.addRemove[200],
+              addOuter: colorTokens.addRemove[100],
+              removeInner: colorTokens.addRemove[400],
+              removeOuter: colorTokens.addRemove[300],
             },
           }),
     },
