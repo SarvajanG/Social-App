@@ -54,7 +54,7 @@ export const colorTokens = {
     500: "#BF0000",
     600: "#00A0BC",
     700: "#006B7D",
-    800: "#008900",
+    800: "#d80000",
     900: "#001519",
   },
   addRemove: {
@@ -100,8 +100,8 @@ export const themeSettings = (mode) => {
             //palette values for light mode
             primary: {
               dark: colorTokens.primary[700],
-              main: colorTokens.primary[500],
-              light: colorTokens.primary[50],
+              main: colorTokens.primary[800],
+              light: colorTokens.primary[500],
             },
             neutral: {
               dark: colorTokens.grey[700],
